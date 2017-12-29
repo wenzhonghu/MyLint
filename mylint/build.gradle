@@ -1,0 +1,34 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile group: 'com.android.tools.build', name: 'gradle', version: '2.3.0'
+    //compile group: 'com.android.tools.lint', name: 'lint', version: '25.3.0'
+    compile group: 'com.android.tools.lint', name: 'lint-api', version: '25.3.0'
+    compile group: 'com.android.tools.lint', name: 'lint-checks', version: '25.3.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group='com.xiaoniu.gradle'
+version='1.0.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
+        }
+    }
+}
+
+//ext {
+//    ARTIFACT_ID = 'mylint'
+//    AAR_VERSION_NAME = '1.0.0'
+//    OUTPUT_MORE_AARS = false
+//}
+//apply from: rootProject.file('uploadaar.gradle')
